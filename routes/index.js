@@ -13,7 +13,6 @@ router.post('/uploadfile', upload.array('myfile', 3), function (req, res, next) 
   // traitement du formulaire
   for (i in req.files) {
     if ((req.files[i].size < 1024 * 1024 * 3) && (req.files[i].mimetype == 'image/png')) {
-      // les deux conditions : fichier avec taille inférieur à 3mo et de type png !
       fs.rename(req.files[i].path, 'public/images/' + req.files[i].originalname, function (err) {
         if (err) {
           res.send('Problème durant le déplacement');
